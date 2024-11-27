@@ -34,6 +34,6 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build and analyze
         env:
-          SONAR_TOKEN:  sqa_51ff6e57a2a0619c57731bb448816bfc51e7a72d 
-          SONAR_HOST_URL: http://localhost:9000
+          SONAR_TOKEN:  ${{sqa_51ff6e57a2a0619c57731bb448816bfc51e7a72d}}
+          SONAR_HOST_URL: ${{http://localhost:9000}}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=user-management -Dsonar.projectName='user-management'

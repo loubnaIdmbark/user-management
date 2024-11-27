@@ -10,4 +10,4 @@ jobs:
      uses: actions/setup-java@v3
      with:
     distribution: 'zulu' # ou adoptium, selon vos besoins
-    java-version: '21'
+    java-version: '20'

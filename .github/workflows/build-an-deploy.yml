@@ -11,17 +11,16 @@ jobs:
     runs-on: self-hosted
 
     steps:
-
       # Checkout code
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
         # Set up JDK 21
-      - name: Set up JDK 21
+      - name: Set up JDK 20
         uses: actions/setup-java@v1
         with:
-          java-version: 21
+          java-version: 20
 
       - name: Setup Maven
         shell: powershell
@@ -48,8 +47,8 @@ jobs:
         # Build and SonarQube analysis
       - name: Build and analyze
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: sqa_51ff6e57a2a0619c57731bb448816bfc51e7a72d
+          SONAR_HOST_URL: http://localhost:9000
         run: |
           mvn -B verify sonar:sonar -Dsonar.project.settings=./sonar-project.properties
         shell: cmd
@@ -67,7 +66,6 @@ jobs:
       - name: Push Docker image
         run: |
           docker push carikk/quality-gate:latest
-
 
       # Set up kubeconfig from secret
       - name: Set up kubeconfig

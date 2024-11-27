@@ -1,13 +1,46 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   build:
-    runs-on: self-hosted
+    name: Build and analyze
+    runs-on: self-hosted  # Assurez-vous que votre runner est bien enregistré et fonctionnel sous Windows
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Run SonarQube analysis
-        run: echo "Running SonarQube analysis..."
-    - name: Set up JDK 21
-     uses: actions/setup-java@v3
-     with:
-    distribution: 'zulu' # ou adoptium, selon vos besoins
-    java-version: '21'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Désactiver le clonage superficiel pour une analyse plus pertinente
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'zulu'  # Zulu pour une meilleure compatibilité Windows
+
+      - name: Cache SonarQube packages
+        uses: actions/cache@v4
+        with:
+          path: C:\Users\runner\.sonar\cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: C:\Users\runner\.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Build and analyze with SonarQube
+        env:
+          SONAR_TOKEN: ${{sqa_51ff6e57a2a0619c57731bb448816bfc51e7a72d}}
+          SONAR_HOST_URL: ${{http://localhost:9000}}
+        run: |
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+            -Dsonar.projectKey=user-management \
+            -Dsonar.projectName='user-management'

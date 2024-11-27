@@ -6,3 +6,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Run SonarQube analysis
         run: echo "Running SonarQube analysis..."
+    - name: Set up JDK 21
+     uses: actions/setup-java@v3
+     with:
+    distribution: 'zulu' # ou adoptium, selon vos besoins
+    java-version: '21'

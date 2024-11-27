@@ -25,11 +25,12 @@ jobs:
              distribution: 'temurin'
           
 
-      - name: Setup Maven
-        shell: powershell
+      - name: Setup Maven 
         run: |
-          echo "MAVEN_HOME=$env:USERPROFILE\maven\apache-maven-3.8.8" >> $env:GITHUB_ENV
-          echo "$env:USERPROFILE\maven\apache-maven-3.8.8\bin" >> $env:GITHUB_PATH
+            export MAVEN_HOME=$HOME/maven/apache-maven-3.8.8
+             export PATH=$MAVEN_HOME/bin:$PATH
+        shell: bash
+
         #      - name: Setup Maven
         #        shell: powershell
         #        run: |

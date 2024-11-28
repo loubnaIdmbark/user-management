@@ -18,6 +18,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # Étape 4: Analyse SonarQube
+      - name: Run SonarQube analysis
+        env:
+          SONAR_TOKEN: sqa_51ff6e57a2a0619c57731bb448816bfc51e7a72d
+          SONAR_HOST_URL: http://localhost:9000 # Jeton d'authentification
+        run: |
+          mvn verify sonar:sonar -Dsonar.projectKey=user-management \
+                               -Dsonar.projectName="user-management" \
+                               -Dsonar.host.url=http://localhost:9000  \
+                               -Dsonar.login=sqa_51ff6e57a2a0619c57731bb448816bfc51e7a72d
 
       # Étape 2: Installation de Java
       - name: Set up JDK 17
@@ -33,14 +43,3 @@ jobs:
           tar -xf maven.zip -C ${{ runner.temp }}
           echo "MAVEN_HOME=${{ runner.temp }}/apache-maven-3.8.8" >> $GITHUB_ENV
           echo "${{ runner.temp }}/apache-maven-3.8.8/bin" >> $GITHUB_PATH
-
-      # Étape 4: Analyse SonarQube
-      - name: Run SonarQube analysis
-        env:
-          SONAR_TOKEN: sqa_51ff6e57a2a0619c57731bb448816bfc51e7a72d
-          SONAR_HOST_URL: http://localhost:9000 # Jeton d'authentification
-        run: |
-          mvn verify sonar:sonar -Dsonar.projectKey=user-management \
-                                -Dsonar.projectName="user-management" \
-                                -Dsonar.host.url=http://localhost:9000  \
-                                -Dsonar.login=sqa_51ff6e57a2a0619c57731bb448816bfc51e7a72d

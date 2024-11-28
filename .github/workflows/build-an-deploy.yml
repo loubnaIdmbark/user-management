@@ -24,10 +24,10 @@ jobs:
           distribution: "zulu"
 
       - name: Setup Maven
-        shell: powershell
+        shell: bash # Remplace powershell par bash pour éviter l'erreur
         run: |
-          echo "MAVEN_HOME=$env:USERPROFILE\maven\apache-maven-3.8.8" >> $env:GITHUB_ENV
-          echo "$env:USERPROFILE\maven\apache-maven-3.8.8\bin" >> $env:GITHUB_PATH
+          echo "MAVEN_HOME=/usr/share/maven" >> $GITHUB_ENV
+          echo "/usr/share/maven/bin" >> $GITHUB_PATH
         #      - name: Setup Maven
         #        shell: powershell
         #        run: |

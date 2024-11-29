@@ -37,7 +37,7 @@ jobs:
       - name: Run SonarQube analysis
         env:
           SONAR_TOKEN: sqa_51ff6e57a2a0619c57731bb448816bfc51e7a72d
-          SONAR_HOST_URL: http://localhost:9000 # Jeton d'authentification
+          SONAR_HOST_URL: http://localhost:9000
         run: |
           mvn verify sonar:sonar -Dsonar.projectKey=user-management \
                               -Dsonar.projectName="user-management" \

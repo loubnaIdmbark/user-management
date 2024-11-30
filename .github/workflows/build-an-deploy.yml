@@ -22,8 +22,6 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: 20
-          distribution: "zulu" # Use 'zulu', 'oracle', etc. if you prefer
-          architecture: x64
 
       - name: Setup Maven
         shell: powershell

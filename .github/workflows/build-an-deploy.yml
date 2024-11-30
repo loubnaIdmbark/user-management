@@ -16,14 +16,6 @@ jobs:
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
-      - name: Build and analyze
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: |
-          mvn -B verify sonar:sonar -Dsonar.project.settings=./sonar-project.properties
-        shell: cmd
-
         # Install Java manually
         # Set up JDK 21
       - name: Set up JDK 20
@@ -54,5 +46,11 @@ jobs:
         #          echo "$HOME/maven/bin" >> $GITHUB_PATH
 
         # Build and SonarQube analysis
-
+      - name: Build and analyze
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        run: |
+          mvn -B verify sonar:sonar -Dsonar.project.settings=./sonar-project.properties
+        shell: cmd
 #

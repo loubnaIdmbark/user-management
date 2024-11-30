@@ -43,9 +43,10 @@ jobs:
         #          tar -xvzf apache-maven-3.8.8-bin.tar.gz
         #          mv apache-maven-3.8.8 $HOME/maven
         #          echo "MAVEN_HOME=$HOME/maven" >> $GITHUB_ENV
-        #          echo "$HOME/maven/bin" >> $GITHUB_PATH
+        #          echo "$HOME/maven/bin" >> $GITHUB_PATH   ee
 
-        # Build and SonarQube analysis
+      #ghhjkl
+      # Build and SonarQube analysis
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

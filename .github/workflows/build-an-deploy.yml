@@ -24,7 +24,7 @@ jobs:
           java-version: 20
 
       - name: Setup Maven
-        shell: cmd
+        shell: powershell
         run: |
           echo "MAVEN_HOME=$env:USERPROFILE\maven\apache-maven-3.8.8" >> $env:GITHUB_ENV
           echo "$env:USERPROFILE\maven\apache-maven-3.8.8\bin" >> $env:GITHUB_PATH

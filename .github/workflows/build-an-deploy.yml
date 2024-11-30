@@ -27,10 +27,15 @@ jobs:
           distribution: "zulu"
 
       # Étape 3: Installation de Maven
+      # Étape 3: Installation de Maven
+      - name: Install PowerShell
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y powershell
       - name: Setup Maven
         run: |
-          curl -L https://downloads.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.zip -o maven.zip
-          tar -xf maven.zip -C ${{ runner.temp }}
+          curl -L https://downloads.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz -o maven.tar.gz
+          tar -xf maven.tar.gz -C ${{ runner.temp }}
           echo "MAVEN_HOME=${{ runner.temp }}/apache-maven-3.8.8" >> $GITHUB_ENV
           echo "${{ runner.temp }}/apache-maven-3.8.8/bin" >> $GITHUB_PATH
 

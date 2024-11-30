@@ -33,6 +33,7 @@ jobs:
           tar -xf maven.zip -C ${{ runner.temp }}
           echo "MAVEN_HOME=${{ runner.temp }}/apache-maven-3.8.8" >> $GITHUB_ENV
           echo "${{ runner.temp }}/apache-maven-3.8.8/bin" >> $GITHUB_PATH
+
       # Étape 4: Analyse SonarQube
       - name: Run SonarQube analysis
         env:

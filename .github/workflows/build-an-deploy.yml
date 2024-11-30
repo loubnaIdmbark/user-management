@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: 20
-          distribution: "adoptopenjdk" # Use 'zulu', 'oracle', etc. if you prefer
+          distribution: "zulu" # Use 'zulu', 'oracle', etc. if you prefer
           architecture: x64
 
       - name: Setup Maven
